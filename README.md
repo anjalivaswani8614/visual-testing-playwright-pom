@@ -84,3 +84,41 @@ MIT License — free for personal and commercial use.
 ---
 
 Happy testing, and may your pixels always align! ✨
+Visual testing triggers are explicit
+
+Playwright only performs visual comparison when you call toHaveScreenshot().
+
+If a test doesn’t have toHaveScreenshot(), no visual diff happens for that page or element.
+
+2️⃣ Scope: Page-level vs Element-level
+A. Full-page visual testing
+await expect(page).toHaveScreenshot('dashboard-full.png', { fullPage: true });
+
+
+Compares the entire visible page.
+
+Any visual changes anywhere on the page (buttons, backgrounds, charts, etc.) are detected.
+
+B. Element-level visual testing
+await expect(dashboard.submitButton).toHaveScreenshot('submit-button.png');
+
+
+Compares just the specific element.
+
+Useful for reusable components, buttons, cards, modals, etc.
+
+You can do this for multiple elements in the same page — each will have its own baseline and diff.
+
+3️⃣ How to apply across all pages/elements
+
+One test per page: toHaveScreenshot(page) → triggers visual test for the full page.
+
+Multiple tests per page: split by components/elements → allows finer control, masking dynamic elements individually.
+
+Best practice for large apps:
+
+Full-page screenshot for major layout changes.
+
+Element-level screenshots for critical components (buttons, forms, navbars).
+
+This way, any change in UI design or rebranding triggers a failure wherever it matters.
