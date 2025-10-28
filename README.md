@@ -28,7 +28,7 @@ Perfect for testing large web applications, rebrands, and responsive UIs.
    ```bash
    npm run update-snapshots
    ```
-
+5. npx playwright test --browser=chrome
 ---
 
 ## 🧠 Project Structure
